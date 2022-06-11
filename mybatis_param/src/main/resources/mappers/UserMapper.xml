@@ -27,4 +27,20 @@
         from user
         where last_name = '${aaaa}'
     </select>
+    <select id="selectAll" resultType="com.jiaolin.param.pojo.User">
+        select * from user;
+    </select>
+    <select id="selectByIdToMap" resultType="map">
+        select *
+        from user
+        where id = #{id}
+    </select>
+    <select id="selectAllToMap" resultType="java.util.Map">
+        select *
+        from user
+    </select>
+    <select id="selectAllToMap2" resultType="java.util.Map">
+        select *
+        from user
+    </select>
 </mapper>
