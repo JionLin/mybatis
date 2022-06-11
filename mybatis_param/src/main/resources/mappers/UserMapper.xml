@@ -3,9 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jiaolin.param.mapper.UserMapper">
+    <insert id="insertUser">
+        insert into user
+        values (null, #{lastName}, #{age}, #{email}, #{gender});
+    </insert>
 
 
     <select id="selectByIdAndAge" resultType="com.jiaolin.param.pojo.User">
-        select  * from  user where id=#{id} and age=#{xxx}
+        select *
+        from user
+        where id = #{id}
+          and age = #{xxx}
+    </select>
+    <select id="selectUser" resultType="com.jiaolin.param.pojo.User">
+        select *
+        from user
+        where id = #{id}
+          and age = #{age}
+    </select>
+<!--    #{} 占位符赋值 ${} 字符串拼接 需要加单引号 -->
+    <select id="selectByName" resultType="com.jiaolin.param.pojo.User">
+        select *
+        from user
+        where last_name = '${aaaa}'
     </select>
 </mapper>
