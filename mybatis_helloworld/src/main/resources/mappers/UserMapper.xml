@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiaolin.mapper.UserMapper">
+
+    <!--int insertUser();-->
+    <insert id="insertUser">
+        insert into user values(null ,'张三',23,'123','女')
+    </insert>
+    <select id="selectById" resultType="com.jiaolin.pojo.User" parameterType="integer">
+        select  * from  user where id =#{id}
+    </select>
+</mapper>
