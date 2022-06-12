@@ -12,4 +12,6 @@ import org.apache.ibatis.annotations.Param;
 public interface DeptMapper {
 
     Dept selectByDid(@Param("did") Integer did);
+
+    Dept selectByDid2(@Param("did") Integer did);
 }

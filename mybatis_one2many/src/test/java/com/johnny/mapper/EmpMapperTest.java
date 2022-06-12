@@ -1,5 +1,6 @@
 package com.johnny.mapper;
 
+import com.johnny.pojo.Dept;
 import com.johnny.pojo.Emp;
 import com.johnny.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -52,6 +53,18 @@ public class EmpMapperTest {
         System.out.println("========");
         System.out.println(emp.getDept().getDeptName());
     }
+
+
+
+    @Test
+    public void selectByDid1() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
+        Dept dept = mapper.selectByDid2(1);
+        System.out.println(dept);
+
+    }
+
 
 
 }

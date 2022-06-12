@@ -6,6 +6,27 @@
 
 
     <select id="selectByDid" resultType="com.johnny.pojo.Dept">
-        select * from  t_dept where did=#{did}
+        select *
+        from t_dept
+        where did = #{did}
     </select>
+
+    <resultMap id="many2one1" type="com.johnny.pojo.Dept">
+        <id property="did" column="did"/>
+        <result property="deptName" column="dept_name"/>
+        <collection property="emps" ofType="com.johnny.pojo.Emp">
+            <id property="eid" column="eid"/>
+            <result property="age" column="age"/>
+            <result property="empName" column="emp_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectByDid2" resultMap="many2one1">
+        select *
+        from t_dept d
+                 left join t_emp e on d.did = e.did
+        where d.did = #{did}
+    </select>
+
+
 </mapper>
