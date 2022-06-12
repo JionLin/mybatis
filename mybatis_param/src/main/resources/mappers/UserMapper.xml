@@ -7,6 +7,15 @@
         insert into user
         values (null, #{lastName}, #{age}, #{email}, #{gender});
     </insert>
+    <insert id="insertUserInfo" keyProperty="id" useGeneratedKeys="true">
+        insert into user
+        values (null, #{lastName}, #{age}, #{email}, #{gender})
+    </insert>
+    <delete id="deleteByIds">
+        delete
+        from user
+        where id in (${ids})
+    </delete>
 
 
     <select id="selectByIdAndAge" resultType="com.jiaolin.param.pojo.User">
@@ -21,14 +30,15 @@
         where id = #{id}
           and age = #{age}
     </select>
-<!--    #{} 占位符赋值 ${} 字符串拼接 需要加单引号 -->
+    <!--    #{} 占位符赋值 ${} 字符串拼接 需要加单引号 -->
     <select id="selectByName" resultType="com.jiaolin.param.pojo.User">
         select *
         from user
         where last_name = '${aaaa}'
     </select>
     <select id="selectAll" resultType="com.jiaolin.param.pojo.User">
-        select * from user;
+        select *
+        from user;
     </select>
     <select id="selectByIdToMap" resultType="map">
         select *
@@ -42,5 +52,27 @@
     <select id="selectAllToMap2" resultType="java.util.Map">
         select *
         from user
+    </select>
+    <!-- 3种方式
+     占位符赋值
+    select *
+        from user
+        where last_name like "%"#{lastName}"%"
+ ${} 字符串拼接
+   select *
+        from user
+        where last_name like ('%${lastName}%');
+    使用concat 关键字 进行拼接
+    like concat('%',#{},'%')
+    -->
+    <select id="selectByLikeName" resultType="com.jiaolin.param.pojo.User">
+        select *
+        from user
+        where last_name like concat('%',#{lastName},'%');
+    </select>
+
+    <select id="selectByTableName" resultType="com.jiaolin.param.pojo.User">
+        select *
+        from ${tableName}
     </select>
 </mapper>

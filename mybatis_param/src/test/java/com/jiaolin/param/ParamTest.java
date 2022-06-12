@@ -89,4 +89,40 @@ public class ParamTest {
     }
 
 
+    @Test
+    public void testByLikeName() {
+        SqlSession session = SqlSessionUtils.getSessionManager();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        List<User> users = mapper.selectByLikeName("zs");
+        users.forEach(user -> System.out.println(user));
+    }
+
+    @Test
+    public void testDeleteByIds() {
+        SqlSession session = SqlSessionUtils.getSessionManager();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        Integer value = mapper.deleteByIds("33,34,1");
+        System.out.println(value);
+    }
+
+
+    @Test
+    public void testSelectTableName() {
+        SqlSession session = SqlSessionUtils.getSessionManager();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        List<User> users = mapper.selectByTableName("user");
+        users.forEach(user -> System.out.println(user));
+    }
+
+
+    @Test
+    public void testInsertUserGetId() {
+        SqlSession session = SqlSessionUtils.getSessionManager();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        User user = new User(null, "xq", 18, "sjd@163.com", "男");
+        mapper.insertUserInfo(user);
+        System.out.println(user);
+    }
+
+
 }

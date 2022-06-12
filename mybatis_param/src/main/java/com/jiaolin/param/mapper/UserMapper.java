@@ -37,4 +37,17 @@ public interface UserMapper {
     Map<String, Object> selectAllToMap();
 
     List<Map<String, Object>> selectAllToMap2();
+
+
+    //模糊查询
+    List<User> selectByLikeName(@Param("lastName") String lastName);
+
+    //批量删除
+    Integer deleteByIds(@Param("ids") String ids);
+
+    //动态设置表名
+    List<User> selectByTableName(@Param("tableName") String tableName);
+
+    //添加功能获取自增的主键
+    void insertUserInfo(User user);
 }
