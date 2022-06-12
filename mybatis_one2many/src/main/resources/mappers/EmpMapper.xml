@@ -21,4 +21,22 @@
         where eid = #{eid}
     </select>
 
+
+    <resultMap id="one2many_first" type="com.johnny.pojo.Emp">
+        <id property="eid" column="eid"/>
+        <result property="age" column="age"/>
+        <result property="empName" column="emp_name"/>
+        <result property="dept.did" column="did"/>
+        <result property="dept.deptName" column="dept_name"/>
+    </resultMap>
+    <!--    多对1的处理-->
+    <select id="selectById2" resultMap="one2many_first">
+        select *
+        from t_emp e
+                 left join t_dept d on e.did = d.did
+        where e.eid = #{id}
+
+    </select>
+
+
 </mapper>

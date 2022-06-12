@@ -12,4 +12,6 @@ import org.apache.ibatis.annotations.Param;
 public interface EmpMapper {
 
     Emp selectByEid(@Param("eid") Integer eid);
+
+    Emp selectById2(@Param("id") Integer id);
 }

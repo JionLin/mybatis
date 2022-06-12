@@ -17,4 +17,6 @@ public class Emp {
 
     private Integer age;
 
+    private Dept dept;
+
 }
