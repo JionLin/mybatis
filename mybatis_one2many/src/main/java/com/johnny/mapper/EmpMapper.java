@@ -13,5 +13,9 @@ public interface EmpMapper {
 
     Emp selectByEid(@Param("eid") Integer eid);
 
+    Emp selectById1(@Param("id") Integer id);
+
     Emp selectById2(@Param("id") Integer id);
+
+
 }

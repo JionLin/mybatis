@@ -25,11 +25,20 @@ public class EmpMapperTest {
 
     // 3种方式来测试1对多。
     @Test
+    public void selectByid1() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+        Emp emp = mapper.selectById1(1);
+        System.out.println(emp);
+    }
+
+// 3种方式来测试1对多。
+    @Test
     public void selectByid2() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
         Emp emp = mapper.selectById2(1);
-        System.out.println(emp);
+        System.out.println(emp.getAge());
     }
 
 

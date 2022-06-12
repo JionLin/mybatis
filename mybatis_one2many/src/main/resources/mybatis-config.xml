@@ -8,6 +8,9 @@
 
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+<!--        使用懒加载的方式进行-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        
     </settings>
 
     <environments default="development">

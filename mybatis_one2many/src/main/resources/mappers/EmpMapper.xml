@@ -30,12 +30,29 @@
         <result property="dept.deptName" column="dept_name"/>
     </resultMap>
     <!--    多对1的处理-->
-    <select id="selectById2" resultMap="one2many_first">
+    <select id="selectById1" resultMap="one2many_first">
         select *
         from t_emp e
                  left join t_dept d on e.did = d.did
         where e.eid = #{id}
+    </select>
 
+    <resultMap id="one2many_two" type="com.johnny.pojo.Emp">
+        <id property="eid" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="age" column="age"/>
+        <association property="dept" javaType="com.johnny.pojo.Dept">
+            <id property="did" column="did"/>
+            <result property="deptName" column="dept_name"/>
+        </association>
+    </resultMap>
+
+    <!--    第2 种方式-->
+    <select id="selectById2" resultMap="one2many_two">
+        select *
+        from t_emp e
+                 left join t_dept d on e.did = d.did
+        where e.eid = #{id}
     </select>
 
 
