@@ -6,6 +6,9 @@ import com.johnny.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -55,7 +58,6 @@ public class EmpMapperTest {
     }
 
 
-
     @Test
     public void selectByDid1() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
@@ -65,6 +67,25 @@ public class EmpMapperTest {
 
     }
 
+    @Test
+    public void insertBatch() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+        Emp emp1 = new Emp(null, "小青1", 18, null);
+        Emp emp2 = new Emp(null, "小青2", 18, null);
+        Emp emp3 = new Emp(null, "小青3", 18, null);
+        Emp emp4 = new Emp(null, "小青4", 18, null);
+        List<Emp> emps = Arrays.asList(emp1, emp2, emp3, emp4);
+        Integer value = mapper.insertBatch(emps);
+        System.out.println(value);
+    }
+    @Test
+    public void deleteBatch() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+        Integer value = mapper.deleteBatch(new Integer[]{8,9,1,2,11});
+        System.out.println(value);
+    }
 
 
 }

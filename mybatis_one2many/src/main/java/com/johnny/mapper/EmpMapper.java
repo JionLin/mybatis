@@ -3,6 +3,8 @@ package com.johnny.mapper;
 import com.johnny.pojo.Emp;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author johnny
  * @Classname EmpMapper
@@ -18,6 +20,10 @@ public interface EmpMapper {
     Emp selectById2(@Param("id") Integer id);
 
     Emp selectById3(@Param("id") Integer id);
+
+    Integer insertBatch(@Param("emps") List<Emp>emps);
+
+    Integer deleteBatch(@Param("ids") Integer[] ids);
 
 
 }

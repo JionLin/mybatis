@@ -14,6 +14,21 @@
         <result property="empName" column="emp_name"></result>
         <result property="age" column="age"></result>
     </resultMap>
+    <!--    批量新增员工-->
+    <insert id="insertBatch">
+        insert into t_emp values
+        <foreach collection="emps" item="emp" separator=",">
+            (null ,#{emp.empName},#{emp.age},null)
+        </foreach>
+    </insert>
+
+    <delete id="deleteBatch">
+        delete from t_emp where eid in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
 
     <select id="selectByEid" resultMap="one2one_first">
         select *
