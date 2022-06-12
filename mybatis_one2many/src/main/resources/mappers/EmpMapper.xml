@@ -5,7 +5,20 @@
 <mapper namespace="com.johnny.mapper.EmpMapper">
 
 
-    <select id="selectByEid" resultType="com.johnny.pojo.Emp">
-        select eid,emp_name empName,age from t_emp where eid=#{eid}
+    <!--    <select id="selectByEid" resultType="com.johnny.pojo.Emp">-->
+    <!--        select eid,emp_name empName,age from t_emp where eid=#{eid}-->
+    <!--    </select>-->
+
+    <resultMap id="one2one_first" type="com.johnny.pojo.Emp">
+        <id property="eid" column="eid"></id>
+        <result property="empName" column="emp_name"></result>
+        <result property="age" column="age"></result>
+    </resultMap>
+
+    <select id="selectByEid" resultMap="one2one_first">
+        select *
+        from t_emp
+        where eid = #{eid}
     </select>
+
 </mapper>
