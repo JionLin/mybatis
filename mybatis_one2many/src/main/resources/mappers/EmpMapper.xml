@@ -6,6 +6,6 @@
 
 
     <select id="selectByEid" resultType="com.johnny.pojo.Emp">
-        select * from t_emp where eid=#{eid}
+        select eid,emp_name empName,age from t_emp where eid=#{eid}
     </select>
 </mapper>

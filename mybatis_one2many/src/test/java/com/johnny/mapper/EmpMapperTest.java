@@ -22,4 +22,7 @@ public class EmpMapperTest {
         Emp emp = mapper.selectByEid(1);
         System.out.println(emp);
     }
+
+    // 3种方式来测试1对多。
+
 }
