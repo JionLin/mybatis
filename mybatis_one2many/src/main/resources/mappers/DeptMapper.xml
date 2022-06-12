@@ -5,4 +5,7 @@
 <mapper namespace="com.johnny.mapper.DeptMapper">
 
 
+    <select id="selectByDid" resultType="com.johnny.pojo.Dept">
+        select * from  t_dept where did=#{did}
+    </select>
 </mapper>

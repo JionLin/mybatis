@@ -56,4 +56,22 @@
     </select>
 
 
+    <resultMap id="one2many_third" type="com.johnny.pojo.Emp">
+        <id property="eid" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="age" column="age"/>
+        <association property="dept"
+                     select="com.johnny.mapper.DeptMapper.selectByDid"
+                     column="did"
+                     fetchType="eager"
+        ></association>
+    </resultMap>
+
+    <select id="selectById3" resultMap="one2many_third">
+        select *
+        from t_emp
+        where eid = #{id}
+    </select>
+
+
 </mapper>
