@@ -12,6 +12,10 @@
         <setting name="lazyLoadingEnabled" value="true"/>
         
     </settings>
+    <plugins>
+        <!--设置分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
 
     <environments default="development">
         <environment id="development">

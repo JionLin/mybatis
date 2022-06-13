@@ -1,5 +1,8 @@
 package com.johnny.mybatis.mapper;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.johnny.mybatis.pojo.Emp;
 import com.johnny.mybatis.pojo.EmpExample;
 import org.apache.ibatis.io.Resources;
@@ -42,4 +45,22 @@ public class EmpMapperTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testPageInfo() {
+        try {
+            InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            SqlSession sqlSession = sessionFactory.openSession(true);
+            EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+            Page<Object> page = PageHelper.startPage(1, 4);
+            List<Emp> emps = mapper.selectByExample(null);
+//            emps.forEach(emp -> System.out.println(emp));
+            System.out.println(page);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
