@@ -37,10 +37,26 @@ public class EmpMapperTest {
            /*
            查询所有
            List<Emp> emps = mapper.selectByExample(null);*/
-            EmpExample example=new EmpExample();
-            example.createCriteria().andAgeIn(Arrays.asList(18,19,20,28)).andEmpNameLike("%小青%");
+            EmpExample example = new EmpExample();
+            example.createCriteria().andAgeIn(Arrays.asList(18, 19, 20, 28)).andEmpNameLike("%小青%");
             List<Emp> emps = mapper.selectByExample(example);
             emps.forEach(emp -> System.out.println(emp));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testPage() {
+        try {
+            InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            SqlSession sqlSession = sessionFactory.openSession(true);
+            EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+            Page<Object> page = PageHelper.startPage(1, 4);
+            List<Emp> emps = mapper.selectByExample(null);
+//            emps.forEach(emp -> System.out.println(emp));
+            System.out.println(page);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,10 +69,10 @@ public class EmpMapperTest {
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             SqlSession sqlSession = sessionFactory.openSession(true);
             EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
-            Page<Object> page = PageHelper.startPage(1, 4);
+            PageHelper.startPage(1, 4);
             List<Emp> emps = mapper.selectByExample(null);
-//            emps.forEach(emp -> System.out.println(emp));
-            System.out.println(page);
+            PageInfo<Emp> pageInfo = new PageInfo<>(emps, 3);
+            System.out.println(pageInfo);
         } catch (IOException e) {
             e.printStackTrace();
         }
